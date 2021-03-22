@@ -1,0 +1,33 @@
+/*************************************************************
+  Written by travis Term 1 2021
+  Style a basic W3.CSS interface.
+    v1 Basic layout of landing & game pages.
+*************************************************************/
+html, body {
+  margin: 0px;
+  padding: 0px;
+  font-family: tahoma;
+  color: black;
+}
+
+canvas {
+  display: block;
+}
+.Height {
+	height: 15vh;
+}
+.gHeight {
+	height: 82vh;
+}
+#s_landingP {
+	display: block;
+	height: none;
+}
+#s_gameP {
+	display: none;
+	height: none;
+}
+
+/*************************************************************
+/*    END OF CSS
+*************************************************************/
