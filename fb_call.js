@@ -1,6 +1,6 @@
 /**************************************************************/
-// test_call.js
-// Written by travis  2021
+// fb_call.js
+// Written by Travis cotter 2021
 /**************************************************************/
 const PADDING  = 15;
 const PANELW   = 130;
@@ -8,7 +8,7 @@ const NEXTLINE = 30;
 
 /*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
 // database variables
-var DETAILS = "userDetails";      //<== INSERT YOUR FIREBASE PATH NAME HERE
+var DETAILS = "userData";      //<== INSERT YOUR FIREBASE PATH NAME HERE
 
 var loginStatus = ' ';
 var readStatus  = ' ';
@@ -19,123 +19,16 @@ var userDetails = {
   email:    '',
   name:     '',
   photoURL: '',
-  score:    ''
+	staff:		''
 };
+var playerScore = {
+	score:    '',
+	uid:      ''
+}
 
 var dbArray = [];
 /*dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb*/
 
-/**************************************************************/
-// setup
-/**************************************************************/
-function setup() {
-  fb_initialise();                     // connect to firebase
-   
-  playArea = createCanvas(800, 800); 
-  playArea.position(PANELW, PADDING);  // position the canvas
-  
-  createBtns(PADDING, playArea.y);     // create the buttons
-}
-
-/**************************************************************/
-// draw
-/**************************************************************/
-function draw() {
-  background("Gainsboro");
-  
-  // display the data
-  textSize(30);
-  text('uid:   ' + userDetails.uid,   20, 30);
-   
-  textSize(20);
-  text('name:    '  + userDetails.name,  20, 60);   
-  text('email:    ' + userDetails.email, 20, 85);
-  
-  textSize(20);
-  text('path:      ' + DETAILS, 20, 140);
-  
-  text('program',   20, 190);
-  text('database', 150, 190);
-  
-  textSize(40);
-  text(userDetails.score,  20, 230);  
-  text(userDetails.score, 150, 230);
-    
-  textSize(30);
-  text('read all records', 20, 295);
-  
-  textSize(20);
-  // if 'read all' records button hit, dbArray holds the data
-  // loop thru scores array displaying it
-  for(i=0; i < dbArray.length; i++) {
-    text(dbArray[i].name,  450, 330 + NEXTLINE * i);
-    text(dbArray[i].score, 700, 330 + NEXTLINE * i);
-  }  
-  
-  text('DB login status: ' + loginStatus, 20, height-90);
-  text('DB read status:  ' + readStatus,  20, height-60);
-  text('DB write status: ' + writeStatus, 20, height-30);
-}
-
-/**************************************************************/
-// createBtns(_x, _y)
-// Called by setup
-// Create buttons starting at position _x, _y
-// Input:  x & y co-ords of 1st element
-/**************************************************************/
-function createBtns(_x, _y) {  
-  console.log("createBtns: x = " + _x + ",  y = " + _y);
-  
-  const BTNCOL   = 'rgb(0, 204, 0)';
-  const BTNW     = 100;
-  const BTNH     = 70;
-  const GAP      = 15;
-  const FONTSIZE = '18px';
-  
-  // create LOGIN button
-  btnLogin = createButton('login');
-  btnLogin.position(_x, _y);
-  btnLogin.size(BTNW, BTNH);
-  btnLogin.style('background-color', color(BTNCOL));
-  btnLogin.style('font-size', FONTSIZE);
-  btnLogin.mousePressed(login);
-    
-  // create READ ALL button
-  btnReadAll = createButton('read ALL');
-  btnReadAll.position(btnLogin.x, btnLogin.y + 
-                      btnLogin.height + 3 *GAP);
-  btnReadAll.size(BTNW, BTNH);
-  btnReadAll.style('background-color', color(BTNCOL));
-  btnReadAll.style('font-size', FONTSIZE);
-  btnReadAll.mousePressed(readAll);
-  
-  // create READ A RECORD button
-  btnReadRec = createButton('read rec');
-  btnReadRec.position(btnReadAll.x, btnReadAll.y + 
-                      btnReadAll.height + GAP);
-  btnReadRec.size(BTNW, BTNH);
-  btnReadRec.style('background-color', color(BTNCOL));
-  btnReadRec.style('font-size', FONTSIZE);
-  btnReadRec.mousePressed(readRec);
-  
-  // create WRITE button
-  btnWrite = createButton('write rec');
-  btnWrite.position(btnReadRec.x, btnReadRec.y + 
-                    btnReadRec.height + GAP);
-  btnWrite.size(BTNW, BTNH);
-  btnWrite.style('background-color', color(BTNCOL));
-  btnWrite.style('font-size', FONTSIZE);
-  btnWrite.mousePressed(writeRec);
-  
-  // create logout button
-  btnLogout = createButton('logout');
-  btnLogout.position(btnWrite.x, btnWrite.y + 
-                    btnWrite.height + 3 * GAP);
-  btnLogout.size(BTNW, BTNH);
-  btnLogout.style('background-color', color(BTNCOL));
-  btnLogout.style('font-size', FONTSIZE);
-  btnLogout.mousePressed(logout);
-}
 
 /**************************************************************/
 // login()
@@ -169,7 +62,7 @@ function readAll() {
 /**************************************************************/
 function readRec() {
   // CALL YOUR READ A RECORD FUNCTION    <=================
-  fb_readRec(DETAILS, userDetails.uid, userDetails);
+  fb_readRec(DETAILS, userDetails.uid, userDetails, playerScore.uid, playerScore);
 }
 
 /**************************************************************/
@@ -184,7 +77,7 @@ function writeRec() {
     userDetails.score = Number(prompt("enter the user's score"));
     
     // CALL YOUR WRITE A RECORD FUNCTION    <=================
-    fb_writeRec(DETAILS, userDetails.uid, userDetails);
+    fb_writeRec(DETAILS, userDetails.uid, userDetails, playerScore.uid, playerScore);
   }
   else {
     dbScore     = '';
