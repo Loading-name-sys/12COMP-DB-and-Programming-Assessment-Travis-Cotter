@@ -1,6 +1,6 @@
 /**************************************************************/
 // fb_io.js
-// Written by ???   2021
+// Written by Travis cotter   2021
 /**************************************************************/
 
 /**************************************************************/
@@ -46,7 +46,10 @@ function fb_login(_dataRec) {
       _dataRec.email    = user.email;
       _dataRec.name     = user.displayName;
       _dataRec.photoURL = user.photoURL;
+			_dataRec.staff		= user.staff
       loginStatus = 'logged in';
+
+			fb_readRec(DETAILS, _dataRec.uid, _dataRec, _processData)
 	}
 	else {
 	  // user NOT logged in, so redirect to Google login

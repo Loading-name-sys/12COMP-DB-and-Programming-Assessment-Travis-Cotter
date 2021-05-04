@@ -19,15 +19,22 @@ canvas {
 .gHeight {
 	height: 82vh;
 }
-#s_landingP {
+#s_lP {
 	display: block;
 	height: none;
 }
-#s_gameP {
+#s_sP {
 	display: none;
 	height: none;
 }
-
+#s_gP {
+	display: none;
+	height: none;
+}
+#s_aP {
+	display: none;
+	height: none;
+}
 /*************************************************************
 /*    END OF CSS
 *************************************************************/
