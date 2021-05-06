@@ -23,8 +23,8 @@ function draw() {
 }
 
 function startButton(){
-	document.getElementById("s_lP").style.display = "none";
-	document.getElementById("s_sP").style.display = "block";
+	document.getElementById("s_lP").style.display = "block";
+	document.getElementById("s_sP").style.display = "none";
 }
 /*function whypressthis(){
 	alert ("Okay, awnser this");
