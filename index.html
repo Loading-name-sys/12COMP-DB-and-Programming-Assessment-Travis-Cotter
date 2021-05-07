@@ -55,9 +55,35 @@
 			</div>
 		</div>
 	</section>
-	<p><button class="w3-button w3-yellow" onclick="startButton()">Start</button>
-	<button class="w3-button w3-yellow" onclick="whypressthis()">Useless</button></p>
+
+	<!-- Sign in page --->
+	<section id="s_signinP" class="gHeight">
+		<div class="w3-row">
+			<div class="w3-col m8 w3-wide w3-green">
+				<h1> Sign in Please </h1>
+			</div>
+		</div>
+	</section>
+
+	<p><button onclick="funkyButton()">here</button></p>
+	<p><button onclick="whypressthis()">press here</button></p>
 </body>
+<!-- Scripts -->
+<script>
+function funkyButton(){
+	document.getElementById("s_landingP").style.display = "none";
+	document.getElementById("s_signinP").style.display = "block";
+}
+</script>
+
+<script>
+	function whypressthis(){
+		alert ("Okay, awnser this");
+		prompt ("is Bing Dumb?");
+		alert ("Now awnser this");
+		prompt ("Is twavis dumb?");
+	}
+</script>
 
 </html>
 <!-- END OF HTML-------------------------------------------------------->

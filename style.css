@@ -27,6 +27,10 @@ canvas {
 	display: none;
 	height: none;
 }
+#s_signinP {
+	display: none;
+	height: none
+}
 
 /*************************************************************
 /*    END OF CSS
